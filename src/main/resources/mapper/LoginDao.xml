@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hxd.dao.LoginDao">
+
+    <select id="queryUserByName" resultType="com.hxd.entity.User">
+        SELECT * FROM `user` where username = #{name}
+    </select>
+
+    <select id="queryRoleListByUserId" resultType="com.hxd.entity.Role">
+        SELECT r.* FROM role r
+        left JOIN user_role ur on ur.rid = r.id
+        WHERE ur.uid = #{id}
+    </select>
+
+    <select id="queryPermissionsListByRoleId" resultType="com.hxd.entity.Permissions">
+        SELECT p.* FROM permissions p
+        left JOIN role_permissions rp on rp.pid = p.id
+        WHERE rp.rid = #{id}
+    </select>
+
+</mapper>

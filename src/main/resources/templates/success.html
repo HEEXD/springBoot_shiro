@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>success</title>
+</head>
+<body>
+    <h2 th:text="'欢迎你,'+${username}"></h2>
+    <button onclick="location.href='/queryUser'">查询</button>
+    <button onclick="location.href='/addUser'">添加</button>
+    <button onclick="location.href='/delUser'">删除</button>
+    <button onclick="location.href='/updateUser'">更新</button><br/>
+    <input type="button" value="登出" onclick="location.href='/logout'">
+</body>
+</html>
