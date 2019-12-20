@@ -29,30 +29,30 @@ public class LoginController {
     }
 
     @PostMapping("/login")
-    public String login(User user, Model model,String rememberMe) {
+    public String login(User user, Model model, String rememberMe) {
         // 添加用户认证信息
         Subject subject = SecurityUtils.getSubject();
         UsernamePasswordToken usernamePasswordToken = new UsernamePasswordToken(
-                user.getUsername(),user.getPassword()
+                user.getUsername(), user.getPassword()
         );
         // 记住登录状态
-        if(rememberMe!=null) {
+        if (rememberMe != null) {
             usernamePasswordToken.setRememberMe(true);
         }
         try {
             // 进行验证
             subject.login(usernamePasswordToken);
-        }catch (IncorrectCredentialsException e) {
+        } catch (IncorrectCredentialsException e) {
             model.addAttribute("msg", "密码不正确");
-        }catch (UnknownAccountException e) {
+        } catch (UnknownAccountException e) {
             model.addAttribute("msg", "账号不存在");
-        }catch (AuthenticationException e) {
+        } catch (AuthenticationException e) {
             model.addAttribute("msg", "状态不正常");
         }
-        if(subject.isAuthenticated()) {
+        if (subject.isAuthenticated()) {
             model.addAttribute("username", user.getUsername());
             return "success";
-        }else {
+        } else {
             usernamePasswordToken.clear();
             return "login";
         }

@@ -76,10 +76,10 @@ public class ShiroConfig {
         filterFactoryBean.setSecurityManager(securityManager);
         Map<String, String> map = new HashMap<>();
 
-        map.put("/login","anon");// anon:所有url都都可以匿名访问,先配置anon再配置authc
-        map.put("/**", "authc");// authc拦截器会判断用户是否是通过Subject.login（isAuthenticated()==true）登录的，如果是才放行
+        map.put("/login", "anon");// anon:所有url都都可以匿名访问,先配置anon再配置authc
+        //map.put("/**", "authc");// authc拦截器会判断用户是否是通过Subject.login(isAuthenticated()==true)登录的，如果是才放行
         map.put("/**", "user");// user拦截器只要用户登录(isRemembered()==true or isAuthenticated()==true)过即可访问成功
-        map.put("/logout","logout");// 登出
+        map.put("/logout", "logout");// 登出
         filterFactoryBean.setLoginUrl("/login");// 登录
         //filterFactoryBean.setSuccessUrl("/skipIndex");// 登录成功时跳转
         filterFactoryBean.setUnauthorizedUrl("/error");// 错误页面，认证不通过时跳转

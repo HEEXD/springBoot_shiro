@@ -27,7 +27,7 @@ public class LoginServiceImpl implements LoginService {
     public Map<String, Object> getUserByName(String name) {
         // 查询用户
         User user = this.loginDao.queryUserByName(name);
-        if(user==null) {
+        if (user == null) {
             return null;
         }
 
