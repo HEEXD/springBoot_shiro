@@ -1,5 +1,4 @@
-# springBoot_shiro
-## springboot集成shiro
+# springboot集成shiro
 ### shiro认证的流程：
 创建SecurityManager安全管理器 >主体Subject提交认证信息 >SecurityManager安全管理器认证 >SecurityManager调用Authenticator认证器认证 >Realm验证
 #### 有几个概念：
