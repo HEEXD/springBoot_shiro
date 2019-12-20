@@ -28,8 +28,8 @@ public class LoginController {
         return "login";
     }
 
-    @PostMapping("/doLogin")
-    public String doLogin(User user, Model model,String rememberMe) {
+    @PostMapping("/login")
+    public String login(User user, Model model,String rememberMe) {
         // 添加用户认证信息
         Subject subject = SecurityUtils.getSubject();
         UsernamePasswordToken usernamePasswordToken = new UsernamePasswordToken(
