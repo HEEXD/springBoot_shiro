@@ -32,9 +32,7 @@ public class LoginController {
     public String login(User user, Model model, String rememberMe) {
         // 添加用户认证信息
         Subject subject = SecurityUtils.getSubject();
-        UsernamePasswordToken usernamePasswordToken = new UsernamePasswordToken(
-                user.getUsername(), user.getPassword()
-        );
+        UsernamePasswordToken usernamePasswordToken = new UsernamePasswordToken(user.getUsername(), user.getPassword());
         // 记住登录状态
         if (rememberMe != null) {
             usernamePasswordToken.setRememberMe(true);
@@ -44,10 +42,13 @@ public class LoginController {
             subject.login(usernamePasswordToken);
         } catch (IncorrectCredentialsException e) {
             model.addAttribute("msg", "密码不正确");
+            return "login";
         } catch (UnknownAccountException e) {
             model.addAttribute("msg", "账号不存在");
+            return "login";
         } catch (AuthenticationException e) {
             model.addAttribute("msg", "状态不正常");
+            return "login";
         }
         if (subject.isAuthenticated()) {
             model.addAttribute("username", user.getUsername());
@@ -74,7 +75,7 @@ public class LoginController {
         return "queryUser";
     }
 
-    @RequiresRoles("admin")
+    //@RequiresRoles("admin")
     @RequiresPermissions("updateUser")
     @RequestMapping("/updateUser")
     @ResponseBody
